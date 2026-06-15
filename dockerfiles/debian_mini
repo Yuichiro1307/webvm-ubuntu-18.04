@@ -1,10 +1,14 @@
-FROM i386/ubuntu:18.04
+FROM --platform=linux/386 i386/ubuntu:18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN echo "deb http://old-releases.ubuntu.com/ubuntu xenial main universe multiverse" > /etc/apt/sources.list
+RUN printf '%s\n' \
+'deb http://old-releases.ubuntu.com/ubuntu bionic main restricted universe multiverse' \
+'deb http://old-releases.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse' \
+'deb http://old-releases.ubuntu.com/ubuntu bionic-security main restricted universe multiverse' \
+> /etc/apt/sources.list
 
-RUN apt-get update || true && apt-get install -y \
+RUN apt-get update && apt-get install -y \
     bash \
     coreutils \
     util-linux \
@@ -17,7 +21,10 @@ RUN apt-get update || true && apt-get install -y \
 
 RUN useradd -m user && echo "user:password" | chpasswd
 
-ENV HOME="/home/user" TERM="xterm" USER="user" SHELL="/bin/bash"
+ENV HOME="/home/user" \
+    TERM="xterm" \
+    USER="user" \
+    SHELL="/bin/bash"
 
 WORKDIR /home/user
 
