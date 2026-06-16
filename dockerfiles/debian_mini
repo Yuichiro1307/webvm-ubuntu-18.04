@@ -2,23 +2,22 @@ FROM --platform=linux/386 docker.io/i386/ubuntu:18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && \
-    apt-get install -y \
-    bash \
-    coreutils \
-    util-linux \
+RUN apt-get update && apt-get install -y \
+    xfce4 \
+    xfce4-terminal \
+    dbus-x11 \
+    x11-xserver-utils \
+    xauth \
+    sudo \
     vim \
     curl \
-    netcat \
-    python3 \
-    gcc \
     git \
-    make
-
-RUN useradd -m user && echo "user:password" | chpasswd
-
-COPY --chown=user:user ./examples /home/user/examples
-RUN chmod -R +x /home/user/examples/lua
+    python3 \
+    python3-pip \
+    gcc \
+    make \
+    net-tools \
+    procps
 
 WORKDIR /root
 
@@ -26,9 +25,6 @@ ENV HOME="/root" \
     TERM="xterm" \
     USER="root" \
     SHELL="/bin/bash" \
-    EDITOR="vim" \
-    LANG="C.UTF-8"
+    DISPLAY=":0"
 
-RUN echo 'root:password' | chpasswd
-
-CMD ["/bin/bash"]
+CMD ["/usr/bin/startxfce4"]
