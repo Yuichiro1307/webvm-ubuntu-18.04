@@ -31,7 +31,8 @@ ENV HOME="/root" \
     SHELL="/bin/bash" \
     DISPLAY=":0"
 
-COPY start-gui.sh /root/start-gui.sh
+COPY dockerfiles/start-gui.sh /root/start-gui.sh
+
 RUN chmod +x /root/start-gui.sh
 
 CMD ["/root/start-gui.sh"]
