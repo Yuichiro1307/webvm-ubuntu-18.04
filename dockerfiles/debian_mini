@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y \
     gcc \
     make \
     net-tools \
-    procps
+    procps \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /root
 
@@ -25,3 +26,4 @@ ENV HOME="/root" \
     SHELL="/bin/bash" \
     DISPLAY=":0"
 
+CMD ["/bin/bash"]
