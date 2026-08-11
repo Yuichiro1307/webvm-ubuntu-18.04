@@ -3,8 +3,6 @@ FROM --platform=linux/386 docker.io/i386/ubuntu:18.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
-    xfce4 \
-    xfce4-terminal \
     dbus-x11 \
     x11-xserver-utils \
     xauth \
@@ -27,4 +25,3 @@ ENV HOME="/root" \
     SHELL="/bin/bash" \
     DISPLAY=":0"
 
-CMD ["/usr/bin/startxfce4"]
