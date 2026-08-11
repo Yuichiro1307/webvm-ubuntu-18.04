@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y \
     dbus-x11 \
     x11-xserver-utils \
     xauth \
+    xorg \
+    i3 \
     sudo \
     vim \
     curl \
