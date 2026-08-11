@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     xauth \
     xorg \
     i3 \
+    xterm \
     sudo \
     vim \
     curl \
@@ -30,4 +31,7 @@ ENV HOME="/root" \
     SHELL="/bin/bash" \
     DISPLAY=":0"
 
-CMD ["/bin/bash"]
+COPY start-gui.sh /root/start-gui.sh
+RUN chmod +x /root/start-gui.sh
+
+CMD ["/root/start-gui.sh"]
