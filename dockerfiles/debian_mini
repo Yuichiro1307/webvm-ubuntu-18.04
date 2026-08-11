@@ -35,4 +35,4 @@ COPY dockerfiles/start-gui.sh /root/start-gui.sh
 
 RUN chmod +x /root/start-gui.sh
 
-CMD ["/root/start-gui.sh"]
+CMD ["/bin/bash", "-l"]
